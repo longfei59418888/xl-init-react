@@ -5,34 +5,32 @@ const yosay = require('yosay');
 
 module.exports = class extends Generator {
   prompting() {
-    // Have Yeoman greet the user.
-    this.log(
-      yosay(`Welcome to the geometric ${chalk.red('generator-xl-init-react')} generator!`)
-    );
 
     const prompts = [
       {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
-        default: true
+        type: 'input',
+        name: 'npmName',
+        message: '输入 npm 包的名称...'
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: '输入 npm 包的描述...'
       }
     ];
-
     return this.prompt(prompts).then(props => {
-      // To access props later use this.props.someAnswer;
       this.props = props;
     });
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
-  }
 
-  install() {
-    this.installDependencies();
+
+    var pkg = this.fs.readJSON(this.templatePath('package.json'), {});
+    pkg.name = this.props.npmName
+    pkg.description = this.props.description
+    this.fs.writeJSON(this.destinationPath('package.json'), pkg);
+
+
   }
 };
