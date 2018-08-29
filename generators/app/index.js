@@ -1,11 +1,9 @@
 'use strict';
 const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
+const mkdirp = require('mkdirp');
 
 module.exports = class extends Generator {
   prompting() {
-
     const prompts = [
       {
         type: 'input',
@@ -24,13 +22,15 @@ module.exports = class extends Generator {
   }
 
   writing() {
-
-
     var pkg = this.fs.readJSON(this.templatePath('package.json'), {});
-    pkg.name = this.props.npmName
-    pkg.description = this.props.description
+    pkg.name = this.props.npmName;
+    pkg.description = this.props.description;
     this.fs.writeJSON(this.destinationPath('package.json'), pkg);
 
-
+    mkdirp('src');
+    mkdirp('webpack');
+    this.fs.copy(this.templatePath('.babelrc'), this.destinationPath('.babelrc'));
+    this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
+    this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'));
   }
 };
