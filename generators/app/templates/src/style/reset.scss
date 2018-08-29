@@ -1,0 +1,167 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html,body,#app,.main-wrap{
+  height:100%;
+  width:100%;
+}  
+
+#app>div,.main-wrap{
+  height:100%;
+//   background: #BEBEBE;
+}
+
+div{
+  box-sizing: border-box;
+}
+
+a{	
+	color:#3B7ED1;
+	text-decoration: none !important;
+}
+body,button{
+	font-family: PingFangSC-Regular, Helvetica Neue, Hiragino Sans GB, Helvetica, Microsoft YaHei, Arial;
+}
+
+
+
+@keyframes opacity-60-25-0-12 {
+  0% { opacity: 0.25; }
+  0.01% { opacity: 0.25; }
+  0.02% { opacity: 1; }
+  60.01% { opacity: 0.25; }
+  100% { opacity: 0.25; }
+}
+
+@keyframes opacity-60-25-1-12 {
+  0% { opacity: 0.25; }
+  8.34333% { opacity: 0.25; }
+  8.35333% { opacity: 1; }
+  68.3433% { opacity: 0.25; }
+  100% { opacity: 0.25; }
+}
+
+@keyframes opacity-60-25-2-12 {
+  0% { opacity: 0.25; }
+  16.6767% { opacity: 0.25; }
+  16.6867% { opacity: 1; }
+  76.6767% { opacity: 0.25; }
+  100% { opacity: 0.25; }
+}
+
+@keyframes opacity-60-25-3-12 {
+  0% { opacity: 0.25; }
+  25.01% { opacity: 0.25; }
+  25.02% { opacity: 1; }
+  85.01% { opacity: 0.25; }
+  100% { opacity: 0.25; }
+}
+
+@keyframes opacity-60-25-4-12 {
+  0% { opacity: 0.25; }
+  33.3433% { opacity: 0.25; }
+  33.3533% { opacity: 1; }
+  93.3433% { opacity: 0.25; }
+  100% { opacity: 0.25; }
+}
+
+@keyframes opacity-60-25-5-12 {
+  0% { opacity: 0.270958333333333; }
+  41.6767% { opacity: 0.25; }
+  41.6867% { opacity: 1; }
+  1.67667% { opacity: 0.25; }
+  100% { opacity: 0.270958333333333; }
+}
+
+@keyframes opacity-60-25-6-12 {
+  0% { opacity: 0.375125; }
+  50.01% { opacity: 0.25; }
+  50.02% { opacity: 1; }
+  10.01% { opacity: 0.25; }
+  100% { opacity: 0.375125; }
+}
+
+@keyframes opacity-60-25-7-12 {
+  0% { opacity: 0.479291666666667; }
+  58.3433% { opacity: 0.25; }
+  58.3533% { opacity: 1; }
+  18.3433% { opacity: 0.25; }
+  100% { opacity: 0.479291666666667; }
+}
+
+@keyframes opacity-60-25-8-12 {
+  0% { opacity: 0.583458333333333; }
+  66.6767% { opacity: 0.25; }
+  66.6867% { opacity: 1; }
+  26.6767% { opacity: 0.25; }
+  100% { opacity: 0.583458333333333; }
+}
+
+@keyframes opacity-60-25-9-12 {
+  0% { opacity: 0.687625; }
+  75.01% { opacity: 0.25; }
+  75.02% { opacity: 1; }
+  35.01% { opacity: 0.25; }
+  100% { opacity: 0.687625; }
+}
+
+@keyframes opacity-60-25-10-12 {
+  0% { opacity: 0.791791666666667; }
+  83.3433% { opacity: 0.25; }
+  83.3533% { opacity: 1; }
+  43.3433% { opacity: 0.25; }
+  100% { opacity: 0.791791666666667; }
+}
+
+@keyframes opacity-60-25-11-12 {
+  0% { opacity: 0.895958333333333; }
+  91.6767% { opacity: 0.25; }
+  91.6867% { opacity: 1; }
+  51.6767% { opacity: 0.25; }
+  100% { opacity: 0.895958333333333; }
+}
+
+.hide{
+  display: none !important;
+}
