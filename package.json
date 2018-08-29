@@ -78,6 +78,6 @@
       "prettier"
     ]
   },
-  "repository": "longfei59418888/generator-xl-init-react",
+  "repository": "https://github.com/longfei59418888/xl-init-react.git",
   "license": "Apache-2.0"
 }

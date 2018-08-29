@@ -13,7 +13,7 @@ npm install -g generator-xl-init-react
 Then generate your new project:
 
 ```bash
-yo xl-init-react
+yo generator-xl-init-react
 ```
 
 ## Getting To Know Yeoman
