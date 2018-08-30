@@ -1,6 +1,5 @@
 'use strict';
 const Generator = require('yeoman-generator');
-const mkdirp = require('mkdirp');
 
 module.exports = class extends Generator {
   prompting() {
@@ -26,11 +25,16 @@ module.exports = class extends Generator {
     pkg.name = this.props.npmName;
     pkg.description = this.props.description;
     this.fs.writeJSON(this.destinationPath('package.json'), pkg);
+    this.fs.write(this.destinationPath('.gitignore'), 'node_modules/');
 
-    mkdirp('src');
-    mkdirp('webpack');
+    this.fs.copy(this.templatePath('src'), this.destinationPath('src'));
+    this.fs.copy(this.templatePath('webpack'), this.destinationPath('webpack'));
+    this.fs.copy(
+      this.templatePath('.eslintignore'),
+      this.destinationPath('.eslintignore')
+    );
+    this.fs.copy(this.templatePath('.test.json'), this.destinationPath('.eslintrc.json'));
     this.fs.copy(this.templatePath('.babelrc'), this.destinationPath('.babelrc'));
-    this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
     this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'));
   }
 };

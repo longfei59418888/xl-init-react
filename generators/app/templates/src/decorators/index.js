@@ -1,18 +1,17 @@
-import {connect as connects} from "react-redux";
+import { connect as connects } from 'react-redux';
 import React from 'react';
-import { Redirect } from 'react-router'
-import USER from 'src/models/userinfo'
-import {getCookie} from 'src/utils/cookie'
-import {bindActionCreators} from "redux";
+import { Redirect } from 'react-router';
+import { getCookie } from 'src/utils/cookie';
+import { bindActionCreators } from 'redux';
 
 /*
 * 设置默认属性
 * defaultProps  Object  传入默认属性
 * */
-export function defaultProps(defaultProps) {
+export function defaultProps(props) {
     return function (target) {
-        target.defaultProps = defaultProps
-    }
+        target.defaultProps = props;
+    };
 }
 
 /*
@@ -22,42 +21,41 @@ export function defaultProps(defaultProps) {
 * 传入promise对象，当promise中执行resole时候组件加载完成
 * 也可以异步的加载组件或者模块
 * */
-export function loading(promise, Loading = "") {
+export function loading(promise, Loading = '') {
     return function (Target) {
         return class Com extends React.Component {
-            constructor(props){
-                super()
-            }
             state={
-                loading:false,
-                load:[]
+                loadStatus: false,
+                load: [],
             }
-            componentWillMount(){
+            componentWillMount() {
                 this.setState({
-                    loading: true
-                })
-                if (promise) promise(this.props, this.state).then((modules) => {
-                    let asyncComponent = []
-                    if(modules){
-                        modules.forEach(item=>{
-                            asyncComponent.push(item.default)
-                        })
-                    }
-                    this.setState({
-                        loading: false,
-                        load:asyncComponent
-                    })
-                })
-            }
-            render(){
-                if (this.state.loading) {
-                    return !Loading ? '' : <Loading/>
+                    loadStatus: true,
+                });
+                if (promise) {
+                    promise(this.props, this.state).then((modules) => {
+                        const asyncComponent = [];
+                        if (modules) {
+                            modules.forEach((item) => {
+                                asyncComponent.push(item.default);
+                            });
+                        }
+                        this.setState({
+                            loadStatus: false,
+                            load: asyncComponent,
+                        });
+                    });
                 }
-                return <Target {...this.props} load = {this.state.load}/>
             }
-
-        }
-    }
+            render() {
+                const { loadStatus, load } = this.state;
+                if (loadStatus) {
+                    return !Loading ? '' : <Loading />;
+                }
+                return <Target {...this.props} load={load} />;
+            }
+        };
+    };
 }
 
 
@@ -67,15 +65,15 @@ export function loading(promise, Loading = "") {
 * */
 export function login() {
     return function (target) {
-        let render = target.prototype.render;
+        const renderBak = target.prototype.render;
         target.prototype.render = function () {
-            let token = getCookie('token')
+            const token = getCookie('token');
             if (!token) {
-                return (<Redirect to='/login'/>)
+                return (<Redirect to="/login" />);
             }
-            return render.apply(this)
-        }
-    }
+            return renderBak.apply(this);
+        };
+    };
 }
 
 /*
@@ -85,30 +83,27 @@ export function login() {
 * */
 export function connect(reduces, actions) {
     return function (target) {
-        return connects(state => {
+        return connects((state) => {
             let stateProps;
             reduces.forEach((item) => {
                 stateProps = {
-                    [item]: state[item]
-                }
-            })
-            return stateProps
-        }, dispatch => {
-            return bindActionCreators(actions, dispatch)
-        })(target)
-    }
+                    [item]: state[item],
+                };
+            });
+            return stateProps;
+        }, dispatch => bindActionCreators(actions, dispatch))(target);
+    };
 }
 
 /*
 * 将class上面的方法this指向对象本身
 * */
 export function autobind(targer, name, descriptor) {
-
-    let oldValue = descriptor.value;
+    const oldValue = descriptor.value;
     descriptor.value = function () {
         return oldValue.apply(this, arguments);
-    }
-    return descriptor
+    };
+    return descriptor;
 }
 
 
@@ -117,30 +112,29 @@ export function autobind(targer, name, descriptor) {
 * title String  标题名称
 * */
 export function setTitle(title) {
-    return target => {
-        let componentWillMount = target.prototype.componentWillMount;
+    return (target) => {
+        const componentWillMountBak = target.prototype.componentWillMount;
         target.prototype.componentWillMount = function () {
-            _setTitle(title)
-            if (componentWillMount) componentWillMount.apply(this)
-        }
-    }
+            _setTitle(title);
+            if (componentWillMountBak) componentWillMountBak.apply(this);
+        };
+    };
 }
 
 // 设置文档的标题 html标题
 function _setTitle(title) {
     document.title = title;
-    let iframe = document.createElement('iframe');
+    const iframe = document.createElement('iframe');
     iframe.src = '../favicon.ico';
     iframe.style.display = 'none';
     // 重新加载一个iframe就会重新刷新 document.title
     iframe.onload = function () {
-        setTimeout(function () {
+        setTimeout(() => {
             iframe.remove();
-        }, 0)
-    }
+        }, 0);
+    };
     document.body.appendChild(iframe);
 }
-
 
 
 /*
@@ -149,12 +143,7 @@ function _setTitle(title) {
 * */
 
 export function mixin(objects) {
-    return target =>  {
+    return (target) => {
         Object.assign(target.prototype, objects);
-    }
+    };
 }
-
-
-
-
-
